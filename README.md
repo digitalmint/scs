@@ -7,7 +7,7 @@
 
 ## Features
 
-* Automatic loading and saving of session data via middleware.
+* Automatic loading and saving of session data via middleware.****
 * Choice of 19 different server-side session stores including PostgreSQL, MySQL, MSSQL, SQLite, Redis and many others. Custom session stores are also supported.
 * Supports multiple sessions per request, 'flash' messages, session token regeneration, idle and absolute session timeouts, and 'remember me' functionality.
 * Easy to extend and customize. Communicate session tokens to/from clients in HTTP headers or request/response bodies.
@@ -16,19 +16,20 @@
 ## Instructions
 
 - [SCS: HTTP Session Management for Go](#scs-http-session-management-for-go)
-  - [Features](#features)
-  - [Instructions](#instructions)
-    - [Installation](#installation)
-    - [Basic Use](#basic-use)
-    - [Configuring Session Behavior](#configuring-session-behavior)
-    - [Working with Session Data](#working-with-session-data)
-    - [Loading and Saving Sessions](#loading-and-saving-sessions)
-    - [Configuring the Session Store](#configuring-the-session-store)
-    - [Using Custom Session Stores](#using-custom-session-stores)
-      - [Using Custom Session Stores (with context.Context)](#using-custom-session-stores-with-contextcontext)
-    - [Multiple Sessions per Request](#multiple-sessions-per-request)
-    - [Enumerate All Sessions](#enumerate-all-sessions)
-    - [Compatibility](#compatibility)
+	- [Features](#features)
+	- [Instructions](#instructions)
+		- [Installation](#installation)
+		- [Basic Use](#basic-use)
+		- [Configuring Session Behavior](#configuring-session-behavior)
+		- [Working with Session Data](#working-with-session-data)
+		- [Loading and Saving Sessions](#loading-and-saving-sessions)
+		- [Configuring the Session Store](#configuring-the-session-store)
+		- [Using Custom Session Stores](#using-custom-session-stores)
+			- [Using Custom Session Stores (with context.Context)](#using-custom-session-stores-with-contextcontext)
+		- [Preventing Session Fixation](#preventing-session-fixation)
+		- [Multiple Sessions per Request](#multiple-sessions-per-request)
+		- [Enumerate All Sessions](#enumerate-all-sessions)
+		- [Compatibility](#compatibility)
 
 ### Installation
 
@@ -207,6 +208,8 @@ type IterableStore interface {
 #### Using Custom Session Stores (with context.Context)
 
 [`scs.CtxStore`](https://pkg.go.dev/github.com/alexedwards/scs/v2#CtxStore) defines the interface for custom session stores (with methods take context.Context parameter).
+
+By default, it uses a `sessions` table, it can be changed by using `scs.Store.SetSessionsTableName("custom_session_table_name")`.
 
 ```go
 type CtxStore interface {
